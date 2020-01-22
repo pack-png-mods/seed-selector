@@ -1,24 +1,24 @@
 {
   "schemaVersion": 1,
-  "id": "worldgentests",
+  "id": "seedselector",
   "version": "${version}",
 
-  "name": "World Gen Tests",
-  "description": "World Generation Testing to help us find the pack.png seed",
+  "name": "Seed Selector",
+  "description": "Allows you to choose the world seed when generating a world",
   "authors": [
     "Earthcomputer"
   ],
   "contact": {
     "homepage": "https://earthcomputer.net/",
-    "sources": "https://github.com/Earthcomputer/pack-png-mods/world-gen-tests"
+    "sources": "https://github.com/pack-png-mods/seed-selector"
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/worldgentests/icon.png",
+  "icon": "assets/seedselector/icon.png",
 
   "environment": "*",
   "mixins": [
-    "worldgentests.mixins.json"
+    "seedselector.mixins.json"
   ],
 
   "depends": {

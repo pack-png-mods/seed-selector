@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.earthcomputer.worldgentests.mixin",
+  "package": "net.earthcomputer.seedselector.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
