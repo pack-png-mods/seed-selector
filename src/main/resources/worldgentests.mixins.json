@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.earthcomputer.worldgentests.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "MixinMinecraft"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

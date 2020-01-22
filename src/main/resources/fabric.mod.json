@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "worldgentests",
+  "version": "${version}",
+
+  "name": "World Gen Tests",
+  "description": "World Generation Testing to help us find the pack.png seed",
+  "authors": [
+    "Earthcomputer"
+  ],
+  "contact": {
+    "homepage": "https://earthcomputer.net/",
+    "sources": "https://github.com/Earthcomputer/pack-png-mods/world-gen-tests"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/worldgentests/icon.png",
+
+  "environment": "*",
+  "mixins": [
+    "worldgentests.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": "0.4.9"
+  }
+}
