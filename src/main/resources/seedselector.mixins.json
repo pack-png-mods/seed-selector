@@ -5,7 +5,10 @@
   "mixins": [
   ],
   "client": [
-    "MixinMinecraft"
+    "MixinGuiSelectWorld",
+    "MixinMinecraft",
+    "GuiButtonAccessor",
+    "MinecraftAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
