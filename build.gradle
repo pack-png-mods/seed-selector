@@ -35,13 +35,20 @@ group = project.maven_group
 minecraft {
 }
 
+repositories {
+	maven {
+		name = 'Jitpack'
+		url = 'https://jitpack.io/'
+	}
+}
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.alphaMcp('2.2a.1', loom.mediafire('http://www.mediafire.com/file/vwgj80p8n1plrlq/mcp22a.zip')) { mappings ->
 		mappings.method 'net/minecraft/src/World', '(III)Z', 'func_708_k', 'canSeeTheSky'
 	}
-	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
+	modCompile "com.github.Earthcomputer:fabric-loader:${project.loader_version}"
 
 	compile 'com.google.code.gson:gson:2.8.6'
 	compile 'com.google.guava:guava:28.2-jre'
