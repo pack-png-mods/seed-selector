@@ -14,6 +14,8 @@ public class CreateWorldScreen extends GuiScreen {
 
     private final String worldName;
     private TextField seedTextField;
+    private TextField spawnXTextField;
+    private TextField spawnZTextField;
     private boolean isRandomSeed;
     private long randomSeed;
 
@@ -25,12 +27,20 @@ public class CreateWorldScreen extends GuiScreen {
     @Override
     public void func_6448_a() {
         Keyboard.enableRepeatEvents(true);
-        String seed = seedTextField == null ? "" : seedTextField.getText();
-        seedTextField = new TextField(field_6451_g, width / 4, height / 2, width / 2, 20);
+        String oldText = seedTextField == null ? "" : seedTextField.getText();
+        seedTextField = new TextField(field_6451_g, width / 4, height / 2 - 50, width / 2, 20);
         seedTextField.setMaxStringLength(256);
-        seedTextField.setText(seed);
+        seedTextField.setText(oldText);
 
-        GuiButton button = new GuiButton(0, width / 2 - 50, height / 2 + 40, "Done");
+        oldText = spawnXTextField == null ? "" : spawnXTextField.getText();
+        spawnXTextField = new TextField(field_6451_g, width / 4, height / 2 + 20, width / 4 - 20, 20);
+        spawnXTextField.setText(oldText);
+
+        oldText = spawnZTextField == null ? "" : spawnZTextField.getText();
+        spawnZTextField = new TextField(field_6451_g, width / 2 + 20, height / 2 + 20, width / 4 - 20, 20);
+        spawnZTextField.setText(oldText);
+
+        GuiButton button = new GuiButton(0, width / 2 - 50, height / 2 + 70, "Done");
         //noinspection ConstantConditions
         GuiButtonAccessor buttonAccessor = (GuiButtonAccessor) button;
         buttonAccessor.setWidth(100);
@@ -46,6 +56,8 @@ public class CreateWorldScreen extends GuiScreen {
     @Override
     public void updateScreen() {
         seedTextField.updateCursorCounter();
+        spawnXTextField.updateCursorCounter();
+        spawnZTextField.updateCursorCounter();
     }
 
     @Override
@@ -57,6 +69,8 @@ public class CreateWorldScreen extends GuiScreen {
     @Override
     protected void keyTyped(char typedChar, int keyCode) {
         seedTextField.textboxKeyTyped(typedChar, keyCode);
+        spawnXTextField.textboxKeyTyped(typedChar, keyCode);
+        spawnZTextField.textboxKeyTyped(typedChar, keyCode);
         if (keyCode == Keyboard.KEY_RETURN)
             confirm();
     }
@@ -64,6 +78,8 @@ public class CreateWorldScreen extends GuiScreen {
     @Override
     protected void mouseClicked(int x, int y, int button) {
         seedTextField.mouseClicked(x, y, button);
+        spawnXTextField.mouseClicked(x, y, button);
+        spawnZTextField.mouseClicked(x, y, button);
         super.mouseClicked(x, y, button);
     }
 
@@ -76,7 +92,13 @@ public class CreateWorldScreen extends GuiScreen {
         if (!validSeed(seed)) {
             drawCenteredString(field_6451_g, "This seed cannot generate naturally", width / 2, 70, 0xffff80);
         }
+
+        drawCenteredString(field_6451_g, "Spawn point:", width / 2, height / 2, 0xffffff);
         seedTextField.drawTextBox();
+        drawString(field_6451_g, "X:", width / 4 - 15, height / 2 + 24, 0xffffff);
+        spawnXTextField.drawTextBox();
+        drawString(field_6451_g, "Z:", width / 2 + 5, height / 2 + 24, 0xffffff);
+        spawnZTextField.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -85,6 +107,13 @@ public class CreateWorldScreen extends GuiScreen {
         mc.func_6261_a(null);
         System.gc();
         World world = new World(new File(Minecraft.func_6240_b(), "saves"), worldName, seed);
+        try {
+            int spawnX = Integer.parseInt(spawnXTextField.getText());
+            int spawnZ = Integer.parseInt(spawnZTextField.getText());
+            world.spawnX = spawnX;
+            world.spawnZ = spawnZ;
+        } catch (NumberFormatException ignore) {}
+
         if (world.field_1033_r) {
             mc.func_6263_a(world, "Generating level");
         } else {
@@ -97,7 +126,9 @@ public class CreateWorldScreen extends GuiScreen {
         if (seedTextField.getText().isEmpty()) {
             if (!isRandomSeed) {
                 isRandomSeed = true;
-                randomSeed = new Random().nextLong();
+                do {
+                    randomSeed = new Random().nextLong();
+                } while (randomSeed == 0);
             }
             return randomSeed;
         }
@@ -110,7 +141,9 @@ public class CreateWorldScreen extends GuiScreen {
         if (seed == 0) {
             if (!isRandomSeed) {
                 isRandomSeed = true;
-                randomSeed = new Random().nextLong();
+                do {
+                    randomSeed = new Random().nextLong();
+                } while (randomSeed == 0);
             }
             return randomSeed;
         }
