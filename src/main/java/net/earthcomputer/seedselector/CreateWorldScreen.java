@@ -28,19 +28,19 @@ public class CreateWorldScreen extends GuiScreen {
     public void func_6448_a() {
         Keyboard.enableRepeatEvents(true);
         String oldText = seedTextField == null ? "" : seedTextField.getText();
-        seedTextField = new TextField(field_6451_g, width / 4, height / 2 - 50, width / 2, 20);
+        seedTextField = new TextField(field_6451_g, width / 4, 100, width / 2, 20);
         seedTextField.setMaxStringLength(256);
         seedTextField.setText(oldText);
 
         oldText = spawnXTextField == null ? "" : spawnXTextField.getText();
-        spawnXTextField = new TextField(field_6451_g, width / 4, height / 2 + 20, width / 4 - 20, 20);
+        spawnXTextField = new TextField(field_6451_g, width / 4, 160, width / 4 - 20, 20);
         spawnXTextField.setText(oldText);
 
         oldText = spawnZTextField == null ? "" : spawnZTextField.getText();
-        spawnZTextField = new TextField(field_6451_g, width / 2 + 20, height / 2 + 20, width / 4 - 20, 20);
+        spawnZTextField = new TextField(field_6451_g, width / 2 + 20, 160, width / 4 - 20, 20);
         spawnZTextField.setText(oldText);
 
-        GuiButton button = new GuiButton(0, width / 2 - 50, height / 2 + 70, "Done");
+        GuiButton button = new GuiButton(0, width / 2 - 50, 210, "Done");
         //noinspection ConstantConditions
         GuiButtonAccessor buttonAccessor = (GuiButtonAccessor) button;
         buttonAccessor.setWidth(100);
@@ -93,11 +93,11 @@ public class CreateWorldScreen extends GuiScreen {
             drawCenteredString(field_6451_g, "This seed cannot generate naturally", width / 2, 70, 0xffff80);
         }
 
-        drawCenteredString(field_6451_g, "Spawn point:", width / 2, height / 2, 0xffffff);
+        drawCenteredString(field_6451_g, "Spawn point:", width / 2, 140, 0xffffff);
         seedTextField.drawTextBox();
-        drawString(field_6451_g, "X:", width / 4 - 15, height / 2 + 24, 0xffffff);
+        drawString(field_6451_g, "X:", width / 4 - 15, 164, 0xffffff);
         spawnXTextField.drawTextBox();
-        drawString(field_6451_g, "Z:", width / 2 + 5, height / 2 + 24, 0xffffff);
+        drawString(field_6451_g, "Z:", width / 2 + 5, 164, 0xffffff);
         spawnZTextField.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
